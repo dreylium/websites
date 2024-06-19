@@ -1,0 +1,39 @@
+/* Font import */
+@font-face {
+	font-family: 'Titillium Web';
+	src:
+		url('./fonts/TitilliumWeb/TitilliumWeb-Regular.woff2') format('woff2'),
+		url('./fonts/TitilliumWeb/TitilliumWeb-Regular.woff') format('woff');
+}
+@font-face {
+	font-family: 'Titillium Web SemiBold';
+	src:
+		url('./fonts/TitilliumWeb/TitilliumWeb-SemiBold.woff2') format('woff2'),
+		url('./fonts/TitilliumWeb/TitilliumWeb-SemiBold.woff') format('woff');
+}
+@font-face {
+	font-family: 'Titillium Web Bold';
+	src:
+		url('./fonts/TitilliumWeb/TitilliumWeb-Bold.woff2') format('woff2'),
+		url('./fonts/TitilliumWeb/TitilliumWeb-Bold.woff') format('woff');
+}
+/* tailwindcss */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+	@apply h-full overflow-x-hidden;
+}
+body {
+	@apply bg-clr-background font-semi text-clr-text lg:text-xl;
+}
+h1 {
+	@apply font-semi text-4xl tracking-[0.1em] lg:text-6xl;
+}
+h2 {
+	@apply mb-4 font-semi text-2xl text-clr-secondary lg:text-4xl;
+}
+h3 {
+	@apply text-base lg:text-2xl;
+}
