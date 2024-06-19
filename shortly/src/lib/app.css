@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+	font-family: Poppins;
+	src:
+		url('$lib/fonts/Poppins/Poppins-Regular.woff2') format('woff2'),
+		url('$lib/fonts/Poppins/Poppins-Regular.woff') format('woff');
+}
+@font-face {
+	font-family: Poppins-Medium;
+	src:
+		url('$lib/fonts/Poppins/Poppins-Medium.woff2') format('woff2'),
+		url('$lib/fonts/Poppins/Poppins-Medium.woff') format('woff');
+}
+@font-face {
+	font-family: Poppins-Bold;
+	src:
+		url('$lib/fonts/Poppins/Poppins-Bold.woff2') format('woff2'),
+		url('$lib/fonts/Poppins/Poppins-Bold.woff') format('woff');
+}
+
+html {
+	@apply h-full overflow-x-hidden;
+}
+
+body {
+	font-size: 18px;
+	font-family: Poppins;
+}
