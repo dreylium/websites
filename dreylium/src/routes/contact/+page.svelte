@@ -1,7 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
 	import imgFiverr from '$lib/images/min/logo/fiverr.svg';
-	import imgGmail from '$lib/images/min/logo/gmail.svg';
 
 	const contents = [];
 	onMount(() => {
@@ -37,16 +36,6 @@
 		>
 			<h2 class="mb-0 self-center group-hover:text-clr-primary">Go To</h2>
 			<img src={imgFiverr} alt="fiverr" class="h-10" />
-		</a>
-		<!-- Gmail -->
-		<a
-			href="mailto:dreylium@gmail.com"
-			class="group flex translate-y-16 flex-wrap items-center justify-center gap-4 rounded-2xl px-8 text-clr-accent outline outline-4 outline-clr-secondary hover:outline-clr-primary"
-			target="_blank"
-			bind:this={contents[2]}
-		>
-			<h2 class="mb-0 self-center group-hover:text-clr-primary">Contact me</h2>
-			<img src={imgGmail} alt="gmail" class="h-10" />
 		</a>
 	</div>
 </div>
