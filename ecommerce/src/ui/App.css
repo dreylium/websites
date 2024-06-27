@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: Poppins;
+  src: url('./fonts/Poppins/Poppins-Regular.woff2');
+}
+@font-face {
+  font-family: PoppinsMedium;
+  src: url('./fonts/Poppins/Poppins-Medium.woff2');
+}
+@font-face {
+  font-family: PoppinsSemibold;
+  src: url('./fonts/Poppins/Poppins-SemiBold.woff2');
+}
+
+@font-face {
+  font-family: Inter;
+  src: url('./fonts/Inter/Inter-Regular.woff2');
+}
+@font-face {
+  font-family: InterMedium;
+  src: url('./fonts/Inter/Inter-Medium.woff2');
+}
+@font-face {
+  font-family: InterSemiBold;
+  src: url('./fonts/Inter/Inter-SemiBold.woff2');
+}
+@font-face {
+  font-family: InterBold;
+  src: url('./fonts/Inter/Inter-Bold.woff2');
+}
+
+html {
+  @apply h-full;
+}
+body {
+  @apply font-sans leading-none;
+}
