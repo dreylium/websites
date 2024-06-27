@@ -102,8 +102,9 @@ const ShowProducts: React.FC<ShowProductsProps> = ({
             <figure key={index} className="group">
               <div className="group-hover:bg relative grid min-h-[250px] place-content-center overflow-hidden rounded bg-clr-Secondary">
                 <picture>
+                  <source srcSet={`/images/products/${id}.avif`} type="image/avif" />
                   <img
-                    src={`/images/products/${id}.png`}
+                    src={`/images/products/${id}.webp`}
                     alt={name}
                     className="duration-200 group-hover:scale-110"
                   />

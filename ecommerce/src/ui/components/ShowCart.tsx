@@ -26,7 +26,8 @@ export default function ShowCart({ currentCart, totalCart }: ShowCartProps) {
               className="grid grid-cols-[4rem_1fr_auto] items-center gap-x-8 border-b py-4"
             >
               <picture>
-                <img src={`/images/products/${id}.png`} alt={name} className="mx-auto max-h-16" />
+                <source srcSet={`/min/products/${id}.avif`} type="image/avif" />
+                <img src={`/min_webp/products/${id}.webp`} alt={name} className="mx-auto max-h-16" />
               </picture>
               <div className="grid gap-y-1">
                 <p>{name}</p>

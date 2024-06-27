@@ -44,7 +44,10 @@ export default function Hero() {
         <div className="relative grid w-[892px] grid-cols-[1fr_auto] bg-black">
           <section className="flex flex-col gap-y-[1.2rem] ps-[64px] pt-[58px] text-white">
             <div className="flex items-center gap-x-6">
-              <img src="/images/logo_apple.png" alt="apple" />
+              <picture>
+                <source srcSet="/min/logo_apple.avif" type="image/avif" />
+                <img src="/min_webp/logo_apple.webp" alt="apple" />
+              </picture>
               <h2 className="mt-0.5">iPhone 14 Series</h2>
             </div>
             <h3 className="font-heading-semibold text-48 leading-tight tracking-[.04em]">
@@ -59,7 +62,10 @@ export default function Hero() {
             </a>
           </section>
           <div className="pt-4">
-            <img src="/images/hero_phone.png" alt="iphone 14 series" />
+            <picture>
+              <source srcSet="/min/hero_phone.avif" type="image/avif" />
+              <img src="/min_webp/hero_phone.webp" alt="iphone 14 series" />
+            </picture>
           </div>
           {/* Owl */}
           <div className="absolute bottom-2.5 flex w-full items-center justify-center gap-x-3">

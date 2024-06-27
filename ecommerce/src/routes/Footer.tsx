@@ -71,14 +71,17 @@ export default function Footer() {
           <p className="mt-[26px] font-medium text-xs opacity-70">Save $3 with App New User Only</p>
           <div className="flex items-center gap-x-2 gap-y-1 py-3">
             <picture>
-              <img className="row-span-2" src="/images/app/qr_code.png" alt="qr code" />
+              <source srcSet="/min/app/qr_code.avif" type="image/avif" />
+              <img className="row-span-2" src="/min_webp/app/qr_code.webp" alt="qr code" />
             </picture>
             <div className="grid gap-y-1">
               <a href="">
-                <img src="/images/app/GooglePlay.png" alt="googleplay store" />
+                <source srcSet="/min/app/GooglePlay.avif" type="image/avif" />
+                <img src="/min_webp/app/GooglePlay.webp" alt="googleplay store" />
               </a>
               <a href="">
-                <img src="/images/app/AppStore.png" alt="app store" />
+                <source srcSet="/min/app/AppStore.avif" type="image/avif" />
+                <img src="/min_webp/app/AppStore.webp" alt="app store" />
               </a>
             </div>
           </div>

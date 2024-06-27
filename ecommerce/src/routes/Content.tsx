@@ -92,7 +92,8 @@ export default function Content() {
             </a>
           </div>
           <picture className="grid h-full place-content-center rounded-full bg-[radial-gradient(rgb(217,217,217,0.3)_30%,transparent_80%)]">
-            <img src="/images/products/boombox.png" alt="" />
+            <source srcSet="/min/products/boombox.avif" type="image/avif" />
+            <img src="/min_webp/products/boombox.webp" alt="" />
           </picture>
         </div>
       </div>
@@ -121,8 +122,9 @@ export default function Content() {
           <figure className="group relative col-span-2 row-span-2 flex items-end overflow-hidden bg-black">
             <div className="grid min-h-[250px] place-content-center rounded px-[30px] pt-[89px]">
               <picture>
+                <source srcSet="/min/products/ps5.avif" type="image/avif" />
                 <img
-                  src="/images/products/ps5.png"
+                  src="/min/products/ps5.webp"
                   alt="playstation 5"
                   className="duration-700 group-hover:scale-105"
                 />
@@ -143,8 +145,9 @@ export default function Content() {
           <figure className="group relative col-span-2 flex items-end justify-end overflow-hidden bg-black">
             <div className="grid min-h-[250px] place-content-center rounded">
               <picture>
+                <source srcSet="/min/products/women_hat.avif" type="image/avif" />
                 <img
-                  src="/images/products/women_hat.png"
+                  src="/min_webp/products/women_hat.webp"
                   alt="women het"
                   className="duration-700 group-hover:scale-105"
                 />
@@ -165,8 +168,9 @@ export default function Content() {
           <figure className="group relative flex items-center justify-center overflow-hidden bg-black">
             <div className="grid min-h-[250px] place-content-center rounded">
               <picture>
+                <source srcSet="/min/products/3_speaker.avif" type="image/avif" />
                 <img
-                  src="/images/products/3_speaker.png"
+                  src="/min/products/3_speaker.webp"
                   alt="speaker"
                   className="duration-700 group-hover:scale-105"
                 />
@@ -183,8 +187,9 @@ export default function Content() {
           <figure className="group relative flex items-center justify-center overflow-hidden bg-black">
             <div className="grid min-h-[250px] place-content-center rounded">
               <picture>
+                <source srcSet="/min/products/perfume.avif" type="image/avif" />
                 <img
-                  src="/images/products/perfume.png"
+                  src="/min/products/perfume.webp"
                   alt="perfume"
                   className="duration-700 group-hover:scale-105"
                 />
@@ -203,17 +208,17 @@ export default function Content() {
       {/* Benefit */}
       <div className="flex justify-center gap-x-[88px] py-[70px]">
         <section className="flex flex-col items-center text-center">
-          <img src="/images/icons/delivery.svg" alt="delivery" />
+          <img src="/min/icons/delivery.svg" alt="delivery" />
           <h2 className="mt-7 font-semibold text-xl">FREE AND FAST DELIVERY</h2>
           <p className="mt-3.5 text-sm">Free delivery for all orders over $140</p>
         </section>
         <section className="flex flex-col items-center text-center">
-          <img src="/images/icons/cs.svg" alt="customer service" />
+          <img src="/min/icons/cs.svg" alt="customer service" />
           <h2 className="mt-7 font-semibold text-xl">24/7 CUSTOMER SERVICE</h2>
           <p className="mt-3.5 text-sm">Friendly 24/7 customer support</p>
         </section>
         <section className="flex flex-col items-center text-center">
-          <img src="/images/icons/money_back.svg" alt="customer service" />
+          <img src="/min/icons/money_back.svg" alt="customer service" />
           <h2 className="mt-7 font-semibold text-xl">MONEY BACK GUARANTEE</h2>
           <p className="mt-3.5 text-sm">We reurn money within 30 days</p>
         </section>
