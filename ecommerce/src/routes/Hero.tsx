@@ -1,103 +1,54 @@
+import { ButtonRight, Owl } from '@ui/assets/Icons';
+import Picture from '@ui/components/Picture';
+
 export default function Hero() {
   return (
-    <div className="mx-auto grid max-w-screen-2xl grid-cols-[1fr_auto] grid-rows-1">
-      <div className="grid min-w-[217px] gap-y-4 pe-4 pt-10 leading-6">
-        <a href="/" className="flex items-center justify-between">
-          Woman’s Fashion
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M12.95 11.636L8 6.68597L9.414 5.27197L15.778 11.636L9.414 18L8 16.586L12.95 11.636Z"
-              fill="black"
-            />
-          </svg>
-        </a>
-        <a href="/" className="flex items-center justify-between">
-          Men’s Fashion
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M12.95 11.636L8 6.68597L9.414 5.27197L15.778 11.636L9.414 18L8 16.586L12.95 11.636Z"
-              fill="black"
-            />
-          </svg>
-        </a>
-        <a href="/">Electronics</a>
-        <a href="/">Home & Lifestyle</a>
-        <a href="/">Medicine</a>
-        <a href="/">Sports & Outdoor</a>
-        <a href="/">Baby’s & Toys</a>
-        <a href="/">Groceries & Pets</a>
-        <a href="/">Health & Beauty</a>
-      </div>
-      <div className="border-l border-[rgb(0,0,0,0.3)] ps-[44px] pt-10">
-        <div className="relative grid w-[892px] grid-cols-[1fr_auto] bg-black">
-          <section className="flex flex-col gap-y-[1.2rem] ps-[64px] pt-[58px] text-white">
-            <div className="flex items-center gap-x-6">
-              <picture>
-                <source srcSet="/min/logo_apple.avif" type="image/avif" />
-                <img src="/min_webp/logo_apple.webp" alt="apple" />
-              </picture>
-              <h2 className="mt-0.5">iPhone 14 Series</h2>
+    <div className="xl:px-[135px]">
+      <div className="mx-auto grid max-w-screen-2xl xl:grid-cols-[1fr_2.5fr]">
+        {/* Wrapper */}
+        <div className="border-[rgb(0,0,0,0.3)] lg:pt-10 xl:order-2 xl:border-l xl:ps-[44px]">
+          <div className="relative mx-auto grid max-w-screen-lg justify-center bg-black sm:grid-cols-[auto_1fr] xl:justify-between">
+            <section className="flex flex-col gap-y-[1.2rem] p-8 text-white xl:ps-[64px] xl:pt-[58px]">
+              <div className="flex items-center gap-x-6">
+                <picture>
+                  <source srcSet="/min/logo_apple.avif" type="image/avif" />
+                  <img src="/min_webp/logo_apple.webp" alt="apple" />
+                </picture>
+                <h2 className="mt-0.5">iPhone 14 Series</h2>
+              </div>
+              <h3 className="font-heading-semibold text-4xl leading-tight tracking-[.04em] md:text-48">
+                Up to 10%
+                <br />
+                off Voucher
+              </h3>
+              <a href="/" className="flex items-center gap-x-2 font-medium text-lg underline">
+                Shop Now
+                <ButtonRight width={24} height={24} />
+              </a>
+            </section>
+            <div className="m-auto pt-4">
+              <Picture src="/hero_phone.png" alt="iphone 14 series" />
             </div>
-            <h3 className="font-heading-semibold text-48 leading-tight tracking-[.04em]">
-              Up to 10% off Voucher
-            </h3>
-            <a
-              href="/"
-              className="flex items-center gap-x-2 px-[0.2rem] py-1 font-medium underline underline-offset-8"
-            >
-              Shop Now
-              <img src="/images/icons/arrow_right.svg" alt="arrow right" />
-            </a>
-          </section>
-          <div className="pt-4">
-            <picture>
-              <source srcSet="/min/hero_phone.avif" type="image/avif" />
-              <img src="/min_webp/hero_phone.webp" alt="iphone 14 series" />
-            </picture>
+            {/* Owl */}
+            <div className="absolute bottom-2.5 flex w-full items-center justify-center gap-x-3">
+              {Array.from({ length: 5 }).map((_, index) => (
+                <button type="button" key={index}>
+                  <Owl current={index === 2} />
+                </button>
+              ))}
+            </div>
           </div>
-          {/* Owl */}
-          <div className="absolute bottom-2.5 flex w-full items-center justify-center gap-x-3">
-            {Array.from({ length: 5 }).map((_, index) => {
-              if (index === 2)
-                return (
-                  <svg
-                    key={index}
-                    className="rounded-full border-2 border-white"
-                    width="14"
-                    height="14"
-                    viewBox="0 0 10 10"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <circle cx="5" cy="5" r="5" fill="#DB4444" />
-                  </svg>
-                );
-              return (
-                <svg
-                  key={index}
-                  width="12"
-                  height="12"
-                  viewBox="0 0 12 12"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <circle opacity="0.5" cx="6" cy="6" r="6" fill="white" />
-                </svg>
-              );
-            })}
-          </div>
+        </div>
+        <div className="grid min-w-[217px] grid-cols-2 gap-y-4 py-10 text-center text-sm leading-6 sm:grid-cols-3 md:grid-cols-4 md:text-base xl:grid-cols-1 xl:gap-0 xl:text-left [&_a:hover]:bg-clr-Secondary2 [&_a:hover]:text-white [&_a]:px-1 [&_a]:py-2 [&_a]:md:px-5">
+          <a href="/">Woman’s Fashion</a>
+          <a href="/">Men’s Fashion</a>
+          <a href="/">Electronics</a>
+          <a href="/">Home &amp; Lifestyle</a>
+          <a href="/">Medicine</a>
+          <a href="/">Sports &amp; Outdoor</a>
+          <a href="/">Baby’s &amp; Toys</a>
+          <a href="/">Groceries &amp; Pets</a>
+          <a href="/">Health &amp; Beauty</a>
         </div>
       </div>
     </div>

@@ -1,42 +1,34 @@
-import {
-  IconPhone,
-  IconComputer,
-  IconSmartWatch,
-  IconCamera,
-  IconHeadPhone,
-  IconGaming,
-} from '@ui/components/icons';
-
+import * as Icons from '@ui/assets/Icons/categories';
 export const categories = [
   {
     name: 'Phone',
     url: '/categories/phone',
-    Icon: IconPhone,
+    Icon: Icons.Cellphone,
   },
   {
     name: 'Computer',
     url: '/categories/computer',
-    Icon: IconComputer,
+    Icon: Icons.Computer,
   },
   {
     name: 'SmartWatch',
     url: '/categories/smartwatch',
-    Icon: IconSmartWatch,
+    Icon: Icons.SmartWatch,
   },
   {
     name: 'Camera',
     url: '/categories/camera',
-    Icon: IconCamera,
+    Icon: Icons.Camera,
   },
   {
     name: 'Headphone',
     url: '/categories/headphone',
-    Icon: IconHeadPhone,
+    Icon: Icons.Headphone,
   },
   {
     name: 'Gaming',
     url: '/categories/gaming',
-    Icon: IconGaming,
+    Icon: Icons.Gamepad,
   },
 ];
 export const products = [
@@ -47,6 +39,8 @@ export const products = [
     ratingCount: 88,
     price: 160,
     discount: 40,
+    stock: 100,
+    info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
   {
     id: 1,
@@ -55,6 +49,8 @@ export const products = [
     ratingCount: 75,
     price: 1160,
     discount: 35,
+    stock: 100,
+    info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
   {
     id: 2,
@@ -63,6 +59,8 @@ export const products = [
     ratingCount: 99,
     price: 400,
     discount: 30,
+    stock: 100,
+    info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
   {
     id: 3,
@@ -71,10 +69,9 @@ export const products = [
     ratingCount: 99,
     price: 400,
     discount: 25,
+    stock: 100,
+    info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
-  /*
-
-*/
   {
     id: 4,
     name: 'The north coat',
@@ -82,6 +79,8 @@ export const products = [
     ratingCount: 65,
     price: 260,
     discount: 0,
+    stock: 100,
+    info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
   {
     id: 5,
@@ -90,6 +89,8 @@ export const products = [
     ratingCount: 65,
     price: 960,
     discount: 0,
+    stock: 100,
+    info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
   {
     id: 6,
@@ -98,6 +99,8 @@ export const products = [
     ratingCount: 65,
     price: 160,
     discount: 0,
+    stock: 100,
+    info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
   {
     id: 7,
@@ -106,6 +109,8 @@ export const products = [
     ratingCount: 65,
     price: 360,
     discount: 0,
+    stock: 100,
+    info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
   {
     id: 8,
@@ -114,6 +119,8 @@ export const products = [
     ratingCount: 35,
     price: 100,
     discount: 0,
+    stock: 100,
+    info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
   {
     id: 9,
@@ -122,14 +129,18 @@ export const products = [
     ratingCount: 95,
     price: 360,
     discount: 0,
+    stock: 100,
+    info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
   {
     id: 10,
     name: 'ASUS FHD Gaming Laptop',
-    rating: 5.0,
+    rating: 1.5,
     ratingCount: 325,
     price: 700,
     discount: 0,
+    stock: 100,
+    info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
   {
     id: 11,
@@ -138,6 +149,8 @@ export const products = [
     ratingCount: 145,
     price: 500,
     discount: 0,
+    stock: 100,
+    info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
   {
     id: 12,
@@ -146,6 +159,8 @@ export const products = [
     ratingCount: 65,
     price: 960,
     discount: 0,
+    stock: 100,
+    info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
   {
     id: 13,
@@ -154,14 +169,18 @@ export const products = [
     ratingCount: 35,
     price: 1160,
     discount: 0,
+    stock: 100,
+    info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
   {
     id: 14,
     name: 'GP11 Shooter USB Gamepad',
-    rating: 4.5,
+    rating: 2.5,
     ratingCount: 55,
     price: 660,
     discount: 0,
+    stock: 100,
+    info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
   {
     id: 15,
@@ -170,5 +189,7 @@ export const products = [
     ratingCount: 55,
     price: 660,
     discount: 0,
+    stock: 100,
+    info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
 ];

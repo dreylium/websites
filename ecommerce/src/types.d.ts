@@ -1,29 +1,38 @@
-declare interface State {
-  cart:
-    | [
-        {
-          id: number;
-          quantity: number;
-        },
-      ]
-    | [];
-  wishlist: number[] | [];
-}
+import React from 'react';
 
-declare type AppContext = {
-  state: State;
-  setState: React.Dispatch<React.SetStateAction<State>>;
-};
+declare global {
+  type Client = {
+    cart:
+      | [
+          {
+            id: number;
+            quantity: number;
+          },
+        ]
+      | [];
+    wishlist: number[] | [];
+  };
 
-declare type ShowProductsProps = {
-  title: string[];
-  list: number[];
-  time?: boolean;
-  button?: boolean;
-  viewAll?: boolean;
-}
-declare interface ShowCartProps {
-  currentCart: State['cart'];
-  totalCart: number;
-}
+  type UI = {
+    openCart: boolean;
+  };
 
+  type ContextClientD = {
+    client: Client;
+    setClient: React.Dispatch<React.SetStateAction<Client>>;
+  };
+
+  type ContextUID = {
+    ui: UI;
+    setUI: React.Dispatch<React.SetStateAction<UI>>;
+  };
+
+  type ShowProductsProps = {
+    list: number[];
+    title?: string[];
+    time?: boolean;
+    button?: boolean;
+    viewAll?: boolean;
+    openAddToCart?: boolean;
+  };
+}

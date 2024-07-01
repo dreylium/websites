@@ -2,18 +2,33 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import '@ui/App.css';
 
-import Layout from './routes/Layout.tsx';
-import Home from './routes/Home.tsx';
+import Layout from './ui/layout/Layout';
+import NotFound from './ui/components/NotFound';
+import Home from './routes/Home';
+import Login from './routes/login/Login';
+import Contact from './routes/contact/Contact';
+import About from './routes/about/About';
+import Cart from './routes/cart/Cart';
+import Wishlist from './routes/wishlist/Wishlist';
+import Products from './routes/products/Products';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   // <React.StrictMode>
-    <Router>
-      <Routes>
-        <Route Component={Layout}>
-          <Route path="/" Component={Home} />
-        </Route>
-      </Routes>
-    </Router>
-    ,
+  <Router>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/products/:id" element={<Products />} />
+      </Route>
+      <Route element={<Layout rightHeader={false} />}>
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
+  </Router>,
   // </React.StrictMode>,
 );

@@ -1,18 +1,8 @@
-interface State {
-  cart:
-    | [
-        {
-          id: number;
-          quantity: number;
-        },
-      ]
-    | [];
-  wishlist: number[] | [];
-}
-
-export default async function fetchData(state: State) {
-  const data = await fetch('http://localhost:3000/', {
+const fetchProducts = async () => {
+  const data = await fetch('http://localhost:3000/api/products', {
     method: 'get',
   });
-  console.log(data, state);
-}
+  const json = await data.json();
+  console.log(json);
+};
+export { fetchProducts };

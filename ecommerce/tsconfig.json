@@ -26,7 +26,8 @@
       "@lib/*": ["lib/*"],
       "@ui/*": ["ui/*"],
       "@routes/*": ["routes/*"],
-      "@src/*": ["/*"]
+      "@src/*": ["*"],
+      "@public/*": ["public/*"]
     }
   },
   "include": ["src"],
