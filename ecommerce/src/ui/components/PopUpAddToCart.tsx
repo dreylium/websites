@@ -4,24 +4,18 @@ import { products } from '@lib/data';
 
 const PopUpAddToCart = () => {
   const {
-    client: { cart },
+    client: { cart, lastItem },
   } = useClient();
-  const [popUp, setPopUp] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const timer = useRef<number | null>(null);
-  const element = useRef(null);
+  const [popUp, setPopUp] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [color, setColor] = useState('bg-green-900');
+  const timer = useRef<number>(0);
 
   useEffect(() => {
     setLoading(true);
   }, []);
 
-  const nameCount = useMemo(() => {
-    if (cart.length > 0)
-      return `${products[cart[0]!.id].name} (x${cart[0]?.quantity}) added to cart`;
-    else return 'Cart is empty';
-  }, [cart]);
-
-  useEffect(() => {
+  const text = useMemo(() => {
     if (loading) {
       setPopUp(true);
       clearTimeout(timer.current as number);
@@ -29,14 +23,30 @@ const PopUpAddToCart = () => {
         setPopUp(false);
       }, 2000);
     }
-  }, [cart]);
+
+    switch (lastItem.what) {
+      case 'addToCart':
+        setColor('bg-green-700');
+        return `${products[lastItem.id].name} (${cart[0]?.quantity}) added to cart`;
+      case 'removeFromCart':
+        setColor('bg-green-700');
+        return `${products[lastItem.id].name} removed from cart`;
+      case 'addToWishlist':
+        setColor('bg-red-500');
+        return `${products[lastItem.id].name} added to wishlist`;
+      case 'removeFromWishlist':
+        setColor('bg-red-500');
+        return `${products[lastItem.id].name} removed to wishlist`;
+      default:
+        return 'empty';
+    }
+  }, [lastItem]);
 
   return (
     <div
-      ref={element}
-      className={`${popUp ? '-translate-y-32 opacity-100' : 'opacity-30'} fixed right-1/2 top-full z-40 mx-auto translate-x-1/2 rounded bg-green-900 px-8 py-4 text-center font-medium text-white duration-700`}
+      className={`${popUp ? '-translate-y-20 opacity-100 lg:-translate-y-32' : 'opacity-30'} fixed top-full z-40 flex w-full justify-center rounded text-center font-medium text-sm text-white transition-transform duration-500 lg:text-base`}
     >
-      {nameCount}
+      <span className={`${color} block px-8 py-4`}>{text}</span>
     </div>
   );
 };

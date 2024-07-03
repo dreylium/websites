@@ -48,8 +48,11 @@ const NewArrival = () => {
       </div>
       {/* Items */}
       <div className="mx-auto mt-[66px] grid max-w-[800px] grid-rows-2 gap-2 text-white lg:max-w-none lg:grid-cols-4 xl:gap-6">
-        {data.map(({ name, description, src, className }) => (
-          <figure className={`${className} group relative grid overflow-hidden bg-black px-6`}>
+        {data.map(({ name, description, src, className }, index) => (
+          <figure
+            key={index}
+            className={`${className} group relative grid overflow-hidden bg-black px-6`}
+          >
             <Picture src={src} alt={name} className="duration-700 group-hover:scale-105" />
             <figcaption className="absolute bottom-6 left-8 leading-[1.5] lg:bottom-8">
               <h2 className="mb-2 font-heading-semibold tracking-[0.03em] lg:text-2xl">{name}</h2>

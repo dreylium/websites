@@ -1,6 +1,22 @@
 import Picture from '@ui/components/Picture';
+import { useState, useEffect } from 'react';
+import { convertMilliseconds } from '@lib/func';
+import { dataTime } from '@lib/data';
 
 const Banner = () => {
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>({
+    Days: 0,
+    Hours: 0,
+    Minutes: 0,
+    Seconds: 0,
+  });
+
+  useEffect(() => {
+    setInterval(() => {
+      setTimeLeft(convertMilliseconds(dataTime.bannerSale));
+    }, 1000);
+  }, []);
+
   return (
     <div className="mt-[50px] bg-black px-6 pb-8">
       <div className="mx-auto grid max-w-screen-2xl items-center gap-x-[27px] lg:grid-cols-[1fr_auto] lg:px-14">
@@ -12,13 +28,11 @@ const Banner = () => {
             Enhance Your Music Experience
           </h3>
           <div className="mt-8 flex gap-x-6">
-            {Object.entries({
-              Days: 3,
-              Hours: 23,
-              Minutes: 13,
-              Seconds: 19,
-            }).map(([key, value]) => (
-              <p className="grid h-[62px] w-[62px] place-content-center rounded-full bg-white text-center text-[11px] text-black">
+            {Object.entries(timeLeft).map(([key, value]) => (
+              <p
+                key={key}
+                className="grid h-[62px] w-[62px] place-content-center rounded-full bg-white text-center text-[11px] text-black"
+              >
                 <span className="font-semibold text-base">{value < 10 ? `0${value}` : value}</span>
                 {key}
               </p>

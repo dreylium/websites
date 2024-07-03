@@ -32,12 +32,30 @@
   src: url('./assets/fonts/Inter/Inter-Bold.woff2');
 }
 
+.layout-px {
+  @apply px-4 xl:px-[135px];
+}
+
 html {
   @apply h-full;
 }
 body {
   @apply font-sans leading-none;
 }
+input {
+  @apply w-full;
+}
 input:focus {
-  @apply outline-none;
+  @apply w-full outline-none;
+}
+/* Chrome, Safari, Edge, dan Opera */
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
 }

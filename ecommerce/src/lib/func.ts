@@ -1,5 +1,27 @@
 import { products } from './data';
-export function getFlashSaleTime() {}
+
+const convertMilliseconds = (date: Date) => {
+  const ms = date.getTime() - new Date().getTime();
+
+  if (ms < 0)
+    return {
+      Days: 0,
+      Hours: 0,
+      Minutes: 0,
+      Seconds: 0,
+    };
+
+  let Seconds = Math.floor(ms / 1000);
+  let Minutes = Math.floor(Seconds / 60);
+  let Hours = Math.floor(Minutes / 60);
+  const Days = Math.floor(Hours / 24);
+
+  Seconds %= 60;
+  Minutes %= 60;
+  Hours %= 24;
+
+  return { Days, Hours, Minutes, Seconds };
+};
 
 const scrollTop = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -14,4 +36,4 @@ const sumCart = (arr: Client['cart']) => {
   return result;
 };
 
-export { scrollTop, sumCart };
+export { scrollTop, sumCart, convertMilliseconds };

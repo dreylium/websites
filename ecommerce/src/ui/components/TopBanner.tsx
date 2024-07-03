@@ -6,7 +6,7 @@ const TopBanner = () => {
 
   return (
     <div
-      className={`${pathname !== '/' && 'hidden'} relative z-40 bg-black p-6 py-4 text-sm text-clr-Text`}
+      className={`${pathname !== '/' && 'hidden'} relative bg-black p-6 py-4 text-sm text-clr-Text xl:z-50`}
     >
       <div className="relative mx-auto flex max-w-screen-2xl flex-col items-center justify-center leading-normal">
         <span className="flex flex-col items-center gap-x-2 text-center lg:flex-row">

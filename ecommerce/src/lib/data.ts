@@ -1,40 +1,62 @@
 import * as Icons from '@ui/assets/Icons/categories';
+
 export const categories = [
   {
     name: 'Phone',
-    url: '/categories/phone',
+    url: '/category/phone',
     Icon: Icons.Cellphone,
   },
   {
     name: 'Computer',
-    url: '/categories/computer',
+    url: '/category/computer',
     Icon: Icons.Computer,
   },
   {
     name: 'SmartWatch',
-    url: '/categories/smartwatch',
+    url: '/category/smartwatch',
     Icon: Icons.SmartWatch,
   },
   {
     name: 'Camera',
-    url: '/categories/camera',
+    url: '/category/camera',
     Icon: Icons.Camera,
   },
   {
     name: 'Headphone',
-    url: '/categories/headphone',
+    url: '/category/headphone',
     Icon: Icons.Headphone,
   },
   {
     name: 'Gaming',
-    url: '/categories/gaming',
+    url: '/category/gaming',
     Icon: Icons.Gamepad,
   },
 ];
+export const categoryName = {
+  womanfashion: 'Woman’s Fashion',
+  menfashion: 'Men’s Fashion',
+  gaming: 'Gaming',
+  computer: 'Computer',
+  homelifestyle: 'Home & Lifestyle',
+  smartwatch: 'Smartwatch',
+  camera: 'Camera',
+  headphone: 'Headphone',
+  pet: 'Pet',
+  phone: 'Phone',
+  laptop: 'Laptop',
+  healtybeauty: 'Healty & Beauty',
+  toy: 'Toy',
+};
+export const dataTime = {
+  flashSale: new Date('2024-10-03T00:00:00Z'),
+  bannerSale: new Date('2024-09-10T00:00:00Z'),
+};
+
 export const products = [
   {
     id: 0,
     name: 'HAVIT HV-G92 Gamepad',
+    category: 'gaming',
     rating: 5.0,
     ratingCount: 88,
     price: 160,
@@ -45,6 +67,7 @@ export const products = [
   {
     id: 1,
     name: 'AK-900 Wired Keyboard',
+    category: 'computer',
     rating: 4.0,
     ratingCount: 75,
     price: 1160,
@@ -55,6 +78,7 @@ export const products = [
   {
     id: 2,
     name: 'IPS LCD Gaming Monitor',
+    category: 'computer',
     rating: 5.0,
     ratingCount: 99,
     price: 400,
@@ -65,6 +89,7 @@ export const products = [
   {
     id: 3,
     name: 'S-Series Comfort Chair',
+    category: 'homelifestyle',
     rating: 4.5,
     ratingCount: 99,
     price: 400,
@@ -75,6 +100,7 @@ export const products = [
   {
     id: 4,
     name: 'The north coat',
+    category: 'womanfashion',
     rating: 5.0,
     ratingCount: 65,
     price: 260,
@@ -85,6 +111,7 @@ export const products = [
   {
     id: 5,
     name: 'Gucci duffle bag',
+    category: 'womanfashion',
     rating: 4.5,
     ratingCount: 65,
     price: 960,
@@ -95,6 +122,7 @@ export const products = [
   {
     id: 6,
     name: 'RGB liquid CPU Cooler',
+    category: 'computer',
     rating: 4.5,
     ratingCount: 65,
     price: 160,
@@ -105,6 +133,7 @@ export const products = [
   {
     id: 7,
     name: 'Small BookSelf',
+    category: 'homelifestyle',
     rating: 5.0,
     ratingCount: 65,
     price: 360,
@@ -115,6 +144,7 @@ export const products = [
   {
     id: 8,
     name: 'Breed Dry Dog Food',
+    category: 'pet',
     rating: 3.0,
     ratingCount: 35,
     price: 100,
@@ -125,6 +155,7 @@ export const products = [
   {
     id: 9,
     name: 'CANON EOS DSLR Camera',
+    category: 'camera',
     rating: 4.0,
     ratingCount: 95,
     price: 360,
@@ -135,6 +166,7 @@ export const products = [
   {
     id: 10,
     name: 'ASUS FHD Gaming Laptop',
+    category: 'laptop',
     rating: 1.5,
     ratingCount: 325,
     price: 700,
@@ -145,6 +177,7 @@ export const products = [
   {
     id: 11,
     name: 'Curology Product Set',
+    category: 'healtybeauty',
     rating: 4.0,
     ratingCount: 145,
     price: 500,
@@ -155,6 +188,7 @@ export const products = [
   {
     id: 12,
     name: 'Kids Electric Car',
+    category: 'toy',
     rating: 5.0,
     ratingCount: 65,
     price: 960,
@@ -165,6 +199,7 @@ export const products = [
   {
     id: 13,
     name: 'Jr. Zoom Soccer Cleats',
+    category: 'menfashion',
     rating: 5.0,
     ratingCount: 35,
     price: 1160,
@@ -175,6 +210,7 @@ export const products = [
   {
     id: 14,
     name: 'GP11 Shooter USB Gamepad',
+    category: 'gaming',
     rating: 2.5,
     ratingCount: 55,
     price: 660,
@@ -185,6 +221,7 @@ export const products = [
   {
     id: 15,
     name: 'Quilted Satin Jacket',
+    category: 'menfashion',
     rating: 4.5,
     ratingCount: 55,
     price: 660,

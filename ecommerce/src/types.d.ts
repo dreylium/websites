@@ -2,15 +2,15 @@ import React from 'react';
 
 declare global {
   type Client = {
-    cart:
-      | [
-          {
-            id: number;
-            quantity: number;
-          },
-        ]
-      | [];
+    cart: {
+      id: number;
+      quantity: number;
+    }[];
     wishlist: number[] | [];
+    lastItem: {
+      id: number;
+      what: string;
+    };
   };
 
   type UI = {
@@ -35,4 +35,16 @@ declare global {
     viewAll?: boolean;
     openAddToCart?: boolean;
   };
+
+  interface Category {
+    title: string;
+    items: number[];
+  }
+
+  interface TimeLeft {
+    Days: number;
+    Hours: number;
+    Minutes: number;
+    Seconds: number;
+  }
 }

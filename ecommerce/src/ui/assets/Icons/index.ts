@@ -15,3 +15,8 @@ export { default as Cart } from './Cart';
 export { default as Phone } from './Phone';
 export { default as Message } from './Message';
 export { default as Search } from './Search';
+export { default as Menu } from './Menu';
+export { default as Repeat } from './Repeat';
+export { default as Delivery1 } from './Delivery1';
+export { default as Plane } from './Plane';
+export { default as Close } from './Close';
