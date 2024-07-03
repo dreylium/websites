@@ -55,9 +55,12 @@ const Hero = () => {
             < /div> */}
           </div>
         </div>
-        <div className="grid min-w-[217px] grid-cols-2 gap-4 px-4 py-10 text-center text-sm leading-6 sm:grid-cols-3 md:grid-cols-4 md:text-base xl:grid-cols-1 xl:gap-0 xl:text-left [&_a:hover]:bg-clr-Secondary2 [&_a:hover]:text-white [&_a]:border-b [&_a]:border-gray-400 [&_a]:px-1 [&_a]:py-2 [&_a]:md:px-5 [&_a]:xl:border-none">
+        <div className="grid min-w-[217px] grid-cols-2 gap-4 px-4 py-10 text-center text-sm leading-6 sm:grid-cols-3 md:grid-cols-4 md:text-base xl:grid-cols-1 xl:gap-0 xl:text-left">
           {Object.entries(category).map(([key, value]) => (
-            <Link key={key} to={`/category/${key}`}>
+            <Link key={key} to={`/category/${key}`}
+              className='hover:bg-clr-Secondary2 hover:text-white border-b border-gray-400 px-1 py-2 md:px-5 xl:border-none'
+
+            >
               {value.title}
               {value.items.length > 0 ? ` (${value.items.length})` : ''}
             </Link>
