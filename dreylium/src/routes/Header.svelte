@@ -7,7 +7,7 @@
 		<!-- Logo -->
 		<a href="{base}/">
 			<!-- <img src={logo} alt="dreylium" /> -->
-			logo
+			<img src="/images/logo/dreylium_logo.svg" alt="dreylium" />
 		</a>
 		<!-- Navigation -->
 		<nav class="gap-x-8 flex">
