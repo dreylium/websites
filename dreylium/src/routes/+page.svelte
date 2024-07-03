@@ -1,9 +1,13 @@
 <script>
 	import Hero from './Hero.svelte';
-	import Features from './Features.svelte';
+	import Websites from './Websites.svelte';
+	import Responsive from './Responsive.svelte';
+	import Code from './Code.svelte';
 </script>
 
 <main class="grid justify-center">
 	<Hero />
-	<Features />
+	<Websites />
+	<Responsive />
+	<Code />
 </main>

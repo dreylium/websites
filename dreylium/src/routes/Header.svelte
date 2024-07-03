@@ -1,30 +1,13 @@
 <script>
 	import { base } from '$app/paths';
-	import { onMount } from 'svelte';
-	import logo from '$lib/images/min/logo/dreylium_logo.svg';
-
-	let navSticky = false;
-
-	const handleScroll = () => {
-		if (window.scrollY > 0) navSticky = true;
-		else navSticky = false;
-	};
-
-	onMount(handleScroll);
 </script>
 
-<svelte:window on:scroll={handleScroll} />
-
-<!-- Header Nav -->
-<header
-	class="sticky top-0 z-50 flex h-20 w-full justify-center px-6 duration-300"
-	class:bg-clr-headerBG={navSticky}
-	class:h-24={!navSticky}
->
+<header class="sticky top-0 z-50 flex h-20 w-full justify-center px-6 duration-300 bg-clr-headerBG">
 	<div class="flex w-full max-w-screen-xl items-center justify-between">
 		<!-- Logo -->
 		<a href="{base}/">
-			<img src={logo} alt="dreylium" />
+			<!-- <img src={logo} alt="dreylium" /> -->
+			logo
 		</a>
 		<!-- Navigation -->
 		<nav class="gap-x-8 flex">
