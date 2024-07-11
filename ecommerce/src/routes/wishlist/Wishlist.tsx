@@ -7,7 +7,7 @@ const Wishlist = () => {
   } = useClient();
 
   return (
-    <div className="py-6 lg:py-20">
+    <div className="layout-p py-6 lg:py-20">
       <div className="mx-auto max-w-screen-2xl">
         {wishlist.length > 0 ? (
           // Wishlist is not empty

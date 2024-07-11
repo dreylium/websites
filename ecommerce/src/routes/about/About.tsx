@@ -2,7 +2,7 @@ import Picture from '@ui/components/Picture';
 
 export default function Page() {
   return (
-    <div className="layout-px py-4 lg:py-16">
+    <div className="layout-p py-4 lg:py-16">
       <div className="mx-auto grid max-w-screen-2xl items-center justify-between gap-x-8 gap-y-8 md:grid-cols-[minmax(auto,525px)_minmax(250px,auto)] md:ps-20">
         <section className="text-cente grid leading-relaxed md:text-left">
           <h1 className="mb-10 font-heading-semibold text-36 lg:text-54">Our Story</h1>

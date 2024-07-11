@@ -27,7 +27,7 @@ const Banner = () => {
           <h3 className="mt-[30px] font-heading-semibold text-24 leading-[1.25] tracking-[0.04em] xl:text-48">
             Enhance Your Music Experience
           </h3>
-          <div className="mt-8 flex gap-x-6">
+          <div className="mt-8 flex flex-wrap gap-4 lg:gap-6">
             {Object.entries(timeLeft).map(([key, value]) => (
               <p
                 key={key}
@@ -38,7 +38,7 @@ const Banner = () => {
               </p>
             ))}
           </div>
-          <a href="" className="mt-10 inline-block rounded bg-clr-ButtonRed px-12 py-5 font-medium">
+          <a href="" className="mt-10 rounded bg-clr-ButtonRed px-12 py-5 font-medium !hidden">
             Buy Now!
           </a>
         </div>

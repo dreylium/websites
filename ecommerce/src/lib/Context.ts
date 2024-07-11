@@ -1,66 +1,111 @@
 import { createContext, useContext } from 'react';
-import { products } from './data';
+import { fetchCart, fetchWishlist } from './fetch';
 
 const ContextClient = createContext<ContextClientD | Record<string, never>>({});
+const ContextProducts = createContext<ContextProductsD | Record<string, never>>({});
 const ContextUI = createContext<ContextUID | Record<string, never>>({});
 
-const useClient = () => {
-  const { client, setClient } = useContext(ContextClient);
-  return { client, setClient };
-};
-const useUI = () => {
-  const { ui, setUI } = useContext(ContextUI);
-  return { ui, setUI };
-};
-const addToCart = (setClient: ContextClientD['setClient'], id: number, addQuantity: number = 1) => {
-  setClient((prevState: Client) => {
-    const isExist = prevState.cart.findIndex((item: { id: number }) => item.id === id);
-    const product = products.find((item: { id: number }) => item.id === id);
-    let quantity: number;
-    if (isExist < 0) quantity = addQuantity;
-    else {
-      const [{ quantity: q }] = prevState.cart.splice(isExist, 1);
-      quantity = q + addQuantity;
-    }
+const useClient = () => useContext(ContextClient);
+const useUI = () => useContext(ContextUI);
+const useProducts = () => useContext(ContextProducts);
 
-    if (quantity > product!.stock) quantity = product!.stock;
+const addToCart = async (
+  setClient: ContextClientD['setClient'],
+  cart: Client['cart'],
+  products: Product[],
+  id: number,
+  addQuantity: number = 1,
+) => {
+  const isExist = cart.findIndex((item: { id: number }) => item.id === id);
+  const product = products.find((item: { id: number }) => item.id === id);
+  let quantity: number;
+  if (isExist < 0) quantity = addQuantity;
+  else {
+    const [{ quantity: q }] = cart.splice(isExist, 1);
+    quantity = q + addQuantity;
+  }
 
-    return {
+  if (quantity > product!.stock) quantity = product!.stock;
+
+  const newState = {
+    cart: [{ id, quantity }, ...cart],
+    lastItem: {
+      id,
+      what: 'addToCart',
+    },
+  };
+
+  const success = await fetchCart(newState.cart);
+
+  if (success) {
+    setClient((prevState) => ({
       ...prevState,
-      cart: [{ id, quantity }, ...prevState.cart],
-      lastItem: {
-        id,
-        what: 'addToCart',
-      },
-    };
-  });
+      ...newState,
+    }));
+  }
 };
 
-const removeFromCart = (setClient: ContextClientD['setClient'], id: number, idx: number) => {
-  setClient((prevState: Client) => {
-    prevState.cart.splice(id, 1);
-    return {
+const removeFromCart = async (
+  setClient: ContextClientD['setClient'],
+  cart: Client['cart'],
+  id: number,
+  idx: number,
+) => {
+  cart.splice(id, 1);
+
+  const newState = {
+    cart,
+    lastItem: {
+      id: idx,
+      what: 'removeFromCart',
+    },
+  };
+
+  const success = await fetchCart(newState.cart);
+
+  if (success) {
+    setClient((prevState: Client) => ({
       ...prevState,
-      cart: [...prevState.cart],
-      lastItem: {
-        id: idx,
-        what: 'removeFromCart',
-      },
-    };
-  });
+      ...newState,
+    }));
+  }
 };
-const toggleWishlist = (setClient: ContextClientD['setClient'], id: number) => {
-  setClient((prevState: Client) => {
-    const isExist: boolean = prevState.wishlist.includes(id as never);
-    return {
+const setCart = async (
+  setClient: ContextClientD['setClient'],
+  cart: Client['cart'],
+  id: number,
+  quantity: number,
+) => {
+  cart[id].quantity = quantity;
+
+  const success = await fetchCart(cart);
+
+  if (success)
+    setClient((state: Client) => ({
+      ...state,
+      cart: [...state.cart],
+    }));
+};
+const toggleWishlist = async (
+  setClient: ContextClientD['setClient'],
+  wishlist: Client['wishlist'],
+  id: number,
+) => {
+  const isExist: boolean = wishlist.includes(id as never);
+  const newState = {
+    wishlist: isExist ? [...wishlist.filter((item) => item !== id)] : [...wishlist, id],
+    lastItem: { id, what: isExist ? 'removeFromWishlist' : 'addToWishlist' },
+  };
+
+  const success = await fetchWishlist(newState.wishlist);
+
+  if (success) {
+    setClient((prevState: Client) => ({
       ...prevState,
-      wishlist: isExist
-        ? [...prevState.wishlist.filter((item) => item !== id)]
-        : [...prevState.wishlist, id],
-      lastItem: { id, what: isExist ? 'removeFromWishlist' : 'addToWishlist' },
-    };
-  });
+      ...newState,
+    }));
+  }
 };
 
-export { ContextClient, ContextUI };
-export { useClient, useUI, addToCart, removeFromCart, toggleWishlist };
+export { ContextClient, ContextProducts, ContextUI };
+export { useClient, useProducts, useUI, addToCart, removeFromCart, setCart, toggleWishlist };

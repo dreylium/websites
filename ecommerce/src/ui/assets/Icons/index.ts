@@ -20,3 +20,4 @@ export { default as Repeat } from './Repeat';
 export { default as Delivery1 } from './Delivery1';
 export { default as Plane } from './Plane';
 export { default as Close } from './Close';
+export { default as Account } from './Account';

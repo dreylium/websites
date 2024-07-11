@@ -66,26 +66,26 @@ export default function Footer() {
           <div className="flex items-center gap-x-2 gap-y-1 py-3">
             <Picture src="/app/qr_code.png" alt="qr code" className="row-span-2" />
             <div className="grid gap-y-1">
-              <Link to="https://play.google.com" aria-label="google playstore">
+              <Link target="_blank" to="https://play.google.com" aria-label="google playstore">
                 <Picture src="/app/GooglePlay.png" alt="google playstore" />
               </Link>
-              <Link to="https://www.apple.com/app-store/" aria-label="app store">
+              <Link target="_blank" to="https://www.apple.com/app-store/" aria-label="app store">
                 <Picture src="/app/AppStore.png" alt="app store" />
               </Link>
             </div>
           </div>
           {/* Social Media */}
           <div className="mt-3 flex gap-6">
-            <Link to="https://www.facebook.com" aria-label="facebook">
+            <Link target="_blank" to="https://www.facebook.com" aria-label="facebook">
               <Facebook />
             </Link>
-            <Link to="https://x.com" aria-label="twitter">
+            <Link target="_blank" to="https://x.com" aria-label="twitter">
               <Twitter />
             </Link>
-            <Link to="https://www.instagram.com" aria-label="instagram">
+            <Link target="_blank" to="https://www.instagram.com" aria-label="instagram">
               <Instagram />
             </Link>
-            <Link to="https://www.linkedin.com" aria-label="linkedin">
+            <Link target="_blank" to="https://www.linkedin.com" aria-label="linkedin">
               <Linkedin />
             </Link>
           </div>

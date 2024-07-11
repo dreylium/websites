@@ -2,26 +2,46 @@ import React from 'react';
 
 declare global {
   type Client = {
-    cart: {
-      id: number;
-      quantity: number;
-    }[];
+    login: boolean;
+    username: string;
+    email: string;
+    cart:
+      | {
+          id: number;
+          quantity: number;
+        }[]
+      | [];
     wishlist: number[] | [];
     lastItem: {
       id: number;
       what: string;
     };
   };
-
+  type Product = {
+    id: number;
+    name: string;
+    category: string;
+    rating: string;
+    ratingcount: number;
+    price: number;
+    discount: number;
+    stock: number;
+    info: string;
+  };
   type UI = {
+    openAccount: boolean;
     openCart: boolean;
+    openSearch: boolean;
   };
 
   type ContextClientD = {
     client: Client;
     setClient: React.Dispatch<React.SetStateAction<Client>>;
   };
-
+  type ContextProductsD = {
+    products: Products[];
+    setProducts: React.Dispatch<React.SetStateAction<Products>>;
+  };
   type ContextUID = {
     ui: UI;
     setUI: React.Dispatch<React.SetStateAction<UI>>;

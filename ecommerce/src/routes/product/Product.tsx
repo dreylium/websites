@@ -1,19 +1,22 @@
 import Picture from '@ui/components/Picture';
-import { useParams } from 'react-router-dom';
-import { products } from '@lib/data';
-import { useClient, addToCart, toggleWishlist } from '@lib/Context';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useClient, addToCart, toggleWishlist, useProducts } from '@lib/Context';
 import { Star, Wishlist, Delivery1, Repeat } from '@ui/assets/Icons';
 import { useRef, useState } from 'react';
 
 const Available = () => {
   const id = Number(useParams().id);
-  const { name, rating, ratingCount, price, stock, info } = products[Number(id)];
+  const { products } = useProducts();
+  const { name, rating, ratingcount, price, stock, info } = products.find(
+    (product) => product.id === Number(id),
+  ) as Product;
   const {
-    client: { wishlist },
+    client: { login, cart, wishlist },
     setClient,
   } = useClient();
   const inputRef = useRef<HTMLInputElement>(null);
   const [count, setCount] = useState<number>(0);
+  const navigate = useNavigate();
 
   const changeQuantityHandle = () => {
     const current = inputRef.current;
@@ -32,13 +35,15 @@ const Available = () => {
     target.addEventListener('animationend', () => {
       target.classList.remove('[&_svg]:animate-[ping_.5s]');
     });
-    toggleWishlist(setClient, id);
+    if (!login) navigate('/login');
+    else toggleWishlist(setClient, wishlist, id);
   };
 
   const submitHandle = () => {
-    if (inputRef.current) {
+    if (!login) navigate('/login');
+    else if (inputRef.current) {
       inputRef.current.value = '0';
-      if (count > 0 && count <= stock) addToCart(setClient, id, count);
+      if (count > 0 && count <= stock) addToCart(setClient, cart, products, id, count);
       setCount(0);
     }
   };
@@ -82,8 +87,8 @@ const Available = () => {
         imgClassName="object-contain"
       />
       {/* Informationn */}
-      <section className="flex flex-wrap justify-center gap-x-8 py-8 lg:flex-col lg:px-4 lg:py-0">
-        <div className="max-w-[400px]">
+      <section className="grid gap-x-8 px-6 py-8 lg:flex-col lg:px-4 lg:py-0">
+        <div>
           {/* Name && Price && Description */}
           <div className="flex items-center justify-between">
             <h2 className="mb-2 text-lg font-bold xl:text-2xl">{name}</h2>
@@ -100,23 +105,12 @@ const Available = () => {
             </button>
           </div>
           <div className="mb-4 flex flex-wrap items-center gap-2 text-sm">
-            <Star count={rating} />
-            <p>({ratingCount} Reviews)</p>
+            <Star count={parseFloat(rating)} />
+            <p>({ratingcount} Reviews)</p>
             <p>{stock > 0 ? `In Stock (${stock})` : `Out of Stock`}</p>
           </div>
           <h3 className="mb-4 font-heading-sans text-24">${price}</h3>
           <p className="mb-2 text-sm leading-normal text-gray-500 lg:leading-normal">{info}</p>
-          {/* <div className="flex gap-x-2 py-2">
-            <h2>Variants: </h2>
-            <button type="button">0</button>
-            <button type="button">0</button>
-            <button type="button">0</button>
-          </div> */
-          /* <div className="flex gap-x-2 py-2">
-            <h2>Size: </h2>
-            <button type="button">XS</button>
-            <button type="button">S</button>
-          </div> */}
           {/* Quantity && Add to cart */}
           <div className="flex flex-wrap gap-2 py-2 text-sm">
             <div className="grid h-8 grid-cols-[2rem_3rem_2rem] text-white">
@@ -155,7 +149,7 @@ const Available = () => {
           </div>
         </div>
         {/* Benefit */}
-        <div className="my-10 border leading-normal">
+        <div className="my-10 mr-auto border leading-normal">
           <section className="grid grid-cols-[auto_1fr] grid-rows-2 items-center gap-x-4 gap-y-2 border-b px-4 py-4">
             <Delivery1 className="row-span-2" />
             <h3>Free Delivery</h3>
@@ -179,9 +173,10 @@ const Unavailable = () => (
 
 const Product = () => {
   const { id } = useParams();
+  const { products } = useProducts();
 
   return (
-    <div className="layout-px py-6 lg:py-20">
+    <div className="layout-p py-6 lg:py-20">
       <div className="mx-auto max-w-screen-2xl">
         {products.some((product) => product.id === Number(id)) ? <Available /> : <Unavailable />}
       </div>

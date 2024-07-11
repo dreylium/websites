@@ -32,8 +32,8 @@
   src: url('./assets/fonts/Inter/Inter-Bold.woff2');
 }
 
-.layout-px {
-  @apply px-4 xl:px-[135px];
+.layout-p {
+  @apply px-4 sm:px-10 2xl:px-[135px];
 }
 
 html {

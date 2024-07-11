@@ -2,7 +2,7 @@ import { Delivery, Cs, MoneyBack } from '@ui/assets/Icons';
 
 const Features = () => {
   return (
-    <div className="flex flex-wrap justify-center gap-12 lg:gap-20 py-10 lg:py-32">
+    <div className="flex flex-wrap justify-center gap-12 py-10 lg:gap-20 lg:py-32">
       <section className="flex shrink-0 flex-col items-center text-center">
         <Delivery />
         <h2 className="mt-7 font-semibold text-xl">FREE AND FAST DELIVERY</h2>

@@ -2,7 +2,7 @@ import { Phone, Message } from '@ui/assets/Icons';
 
 const Contact = () => {
   return (
-    <div className="layout-px mx-auto grid gap-4 px-6 sm:grid-cols-[minmax(0,340px)_1fr] lg:gap-8 lg:py-20">
+    <div className="layout-p mx-auto grid gap-4 px-6 sm:grid-cols-[minmax(0,340px)_1fr] lg:gap-8 lg:py-20">
       <form className="grid max-w-screen-2xl grid-cols-1 grid-rows-6 gap-x-4 gap-y-2 rounded px-4 py-6 shadow-[0_0_5px_rgba(0,0,0,0.1)] sm:order-1 lg:grid-cols-3 lg:grid-rows-[1fr_13rem_1fr] lg:gap-y-8 lg:p-10 [&_input]:w-full">
         <input
           name="name"

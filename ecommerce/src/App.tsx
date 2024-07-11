@@ -11,7 +11,8 @@ import About from './routes/about/About';
 import Cart from './routes/cart/Cart';
 import Wishlist from './routes/wishlist/Wishlist';
 import Product from './routes/product/Product';
-import Category from '@routes/category/Category';
+import Category from './routes/category/Category';
+import Account from './routes/account/Account';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   // <React.StrictMode>
@@ -23,6 +24,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route path="/about" element={<About />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/Account" element={<Account />} />
         <Route path="/products/:id" element={<Product />} />
         <Route path="/category/:ids" element={<Category />} />
       </Route>

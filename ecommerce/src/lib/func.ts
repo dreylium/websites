@@ -1,5 +1,3 @@
-import { products } from './data';
-
 const convertMilliseconds = (date: Date) => {
   const ms = date.getTime() - new Date().getTime();
 
@@ -27,13 +25,19 @@ const scrollTop = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
-const sumCart = (arr: Client['cart']) => {
+const sumCart = (products: Product[], arr: Client['cart']) => {
   const result = arr.reduce((total: number, { id, quantity }: { id: number; quantity: number }) => {
-    const price =
-      products[id].price - Math.round((products[id].discount / products[id].price) * 100);
+    const product = products.find((item: { id: number }) => item.id === id);
+    let price = 0;
+
+    if (product) price = product.price - Math.round((product.discount / product.price) * 100);
     return total + price * quantity;
   }, 0);
   return result;
 };
 
-export { scrollTop, sumCart, convertMilliseconds };
+const searchProducts = (products: Product[], q: string) => {
+  return products.filter(({ name }: { name: string }) => name.toLowerCase().includes(q));
+};
+
+export { scrollTop, sumCart, convertMilliseconds, searchProducts };

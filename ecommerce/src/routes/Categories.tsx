@@ -17,12 +17,12 @@ const Categories = () => {
         </div>
       </div>
       {/* Items */}
-      <div className="mt-[60px] grid grid-cols-2 justify-center gap-6 overflow-x-scroll sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-[repeat(auto-fit,minmax(0,1fr))]">
+      <div className="mt-[60px] grid grid-cols-1 justify-center gap-6 overflow-x-scroll min-[325px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-[repeat(auto-fit,minmax(0,1fr))]">
         {categories.map(({ name, url, Icon }, index) => (
           <Link
             to={url}
             key={index}
-            className="grid shrink-0 justify-center gap-y-4 rounded border border-[rgba(0,0,0,0.3)] py-[25px] hover:bg-clr-Secondary2 hover:text-white [&>svg]:mx-auto"
+            className="grid justify-center gap-y-4 rounded border border-[rgba(0,0,0,0.3)] py-[25px] hover:bg-clr-Secondary2 hover:text-white [&>svg]:mx-auto"
           >
             <Icon />
             <p className="mt-1 leading-[1.1]">{name}</p>

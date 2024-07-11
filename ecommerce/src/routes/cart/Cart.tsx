@@ -1,18 +1,19 @@
-import { useClient, removeFromCart } from '@lib/Context';
-import { products } from '@lib/data';
+import { useClient, useProducts, removeFromCart } from '@lib/Context';
 import Picture from '@ui/components/Picture';
 import { Trash } from '@ui/assets/Icons';
 import { useMemo } from 'react';
 import { sumCart } from '@lib/func';
 import { Link } from 'react-router-dom';
+import { setCart } from '@lib/Context';
 
 const Cart = () => {
   const {
     client: { cart },
     setClient,
   } = useClient();
+  const { products } = useProducts();
 
-  const totalCart = useMemo(() => sumCart(cart), [cart]);
+  const totalCart = useMemo(() => sumCart(products, cart), [cart]);
 
   const changeQuantityHandle = (id: number, target: HTMLInputElement) => {
     if (
@@ -21,60 +22,56 @@ const Cart = () => {
       Number(target.value) > products[id].stock
     )
       target.value = String(cart[id].quantity);
-    else
-      setClient((state: Client) => {
-        state.cart[id].quantity = Number(target.value);
-        return {
-          ...state,
-          cart: [...state.cart],
-        };
-      });
+    else setCart(setClient, cart, id, Number(target.value));
   };
 
   return (
-    <div className="layout-px">
+    <div className="layout-p">
       <div className="mx-auto max-w-screen-2xl py-6 lg:py-20">
         {cart.length > 0 ? (
           // Cart is not empty
           <>
-            <div className="hidden grid-cols-[2fr_repeat(2,minmax(0,1fr))_0.75fr_1rem] border-b border-gray-300 px-10 py-8 font-heading-semibold lg:grid">
-              <h2>Product</h2>
-              <h2>Price</h2>
-              <h2>Quantity</h2>
-              <div>
-                <h2>Subtotal</h2>
+            <div className="hidden grid-cols-[4fr_1fr_1fr_4rem] border-b border-gray-300 px-10 py-8 font-heading-semibold lg:grid">
+              <div className="flex justify-between">
+                <h2>Product</h2>
+                <h2>Price</h2>
               </div>
+              <h2 className="text-center">Quantity</h2>
+              <h2 className="text-end">Subtotal</h2>
             </div>
             {/* Product */}
             <div className="grid gap-y-2 lg:gap-y-4 lg:py-10">
               {cart.map(
                 ({ id: idx, quantity }: { id: number; quantity: number }, index: number) => {
-                  const { id, name } = products[idx];
-                  const totalPrice = products[idx].price * quantity;
+                  const product = products.find(({ id }) => id === idx)!;
+                  const { id, name } = product;
+                  const totalPrice = product.price * quantity;
 
                   return (
                     <div
-                      className="grid grid-cols-[auto_1fr_auto_auto] items-center gap-x-4 rounded border border-gray-300 px-4 py-2 lg:h-20 lg:grid-cols-[2fr_repeat(2,minmax(0,1fr))_0.75fr_1rem] lg:gap-0 lg:px-10"
+                      className="grid grid-cols-[2fr_auto_2rem] items-center rounded border border-gray-300 px-3 py-2 max-sm:gap-1 sm:grid-cols-[4fr_1fr_1fr_4rem] lg:h-20 lg:px-10"
                       key={index}
                     >
                       {/* image && Name */}
                       <Link
                         to={`/products/${id}`}
-                        className="col-span-4 flex items-center justify-between gap-4 lg:col-auto lg:justify-start lg:gap-x-6"
+                        className="flex items-center gap-4 lg:col-auto lg:justify-start lg:gap-x-6"
                       >
                         <Picture
                           src={`products/${id}.png`}
-                          className="grid aspect-square h-14 place-items-center"
-                          imgClassName="max-h-14"
+                          className="size-14"
+                          imgClassName="size-full object-contain"
                           alt={name}
                         />
-                        <span>{name}</span>
+                        <div className="flex w-full justify-between gap-2 leading-tight max-sm:flex-col max-sm:text-sm">
+                          <span>{name}</span>
+                          <span>${product.price}</span>
+                        </div>
                       </Link>
-                      <span className="ps-2">${products[idx].price}</span>
                       <input
                         type="number"
                         name="quantity"
-                        className="w-full max-w-12 rounded border p-2 text-center lg:max-w-20"
+                        className="mx-auto w-12 min-w-12 rounded border p-2 text-center sm:w-full sm:max-w-12 lg:max-w-20"
                         defaultValue={quantity}
                         onKeyDown={({ key, target }) => {
                           if (key === 'Enter') {
@@ -84,11 +81,11 @@ const Cart = () => {
                         }}
                         onBlur={({ target }) => changeQuantityHandle(index, target)}
                       />
-                      <span>${totalPrice}</span>
+                      <span className="text-end max-sm:hidden">${totalPrice}</span>
                       <button
                         aria-label="Remove"
                         className="group isolate grid place-content-center p-1 hover:text-clr-ButtonRed"
-                        onClick={() => removeFromCart(setClient, index, idx)}
+                        onClick={() => removeFromCart(setClient, cart, index, id)}
                       >
                         <Trash />
                       </button>
@@ -97,8 +94,8 @@ const Cart = () => {
                 },
               )}
             </div>
-            <div className="flex flex-wrap justify-between gap-10 py-10">
-              <div className="grid h-12 grid-cols-[1fr_auto] gap-8">
+            <div className="grid gap-10 py-10 sm:grid-cols-2">
+              <div className="grid auto-rows-[3rem] gap-4 md:grid-cols-[1fr_auto]">
                 <input
                   type="text"
                   placeholder="Coupon code"
@@ -108,7 +105,7 @@ const Cart = () => {
                   Apply Coupon
                 </button>
               </div>
-              <div className="grid w-full max-w-lg rounded border border-gray-300 p-8 leading-normal">
+              <div className="grid w-full rounded border border-gray-300 p-8 leading-normal">
                 <h2 className="font-medium text-xl">Cart Total</h2>
                 {/* Subtotal */}
                 <section className="flex justify-between border-b border-gray-300 py-4">

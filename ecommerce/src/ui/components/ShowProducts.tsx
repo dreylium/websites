@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Redbar, Star, Wishlist } from '@ui/assets/Icons';
 import { addToCart, toggleWishlist, useClient } from '@lib/Context';
 import Picture from '@ui/components/Picture';
-import { products } from '@lib/data';
 import TimeLeft from './TimeLeft';
+import { useProducts } from '@lib/Context';
+import { useMemo } from 'react';
 
 const ShowProducts: React.FC<ShowProductsProps> = ({
   list,
@@ -13,11 +14,24 @@ const ShowProducts: React.FC<ShowProductsProps> = ({
   openAddToCart = false,
 }) => {
   const {
-    client: { wishlist },
+    client: { login, cart, wishlist },
     setClient,
   } = useClient();
+  const { products } = useProducts();
+  const navigate = useNavigate();
 
-  const items = products.filter((item: { id: number }) => (list.includes(item.id) ? item : false));
+  const items = useMemo(() => {
+    return products.filter((item: { id: number }) => (list.includes(item.id) ? item : false));
+  }, [products, wishlist]);
+
+  const handleAddToCart = (id: number) => {
+    if (!login) navigate('/login');
+    else addToCart(setClient, cart, products, id);
+  };
+  const handleToggleWishlist = (id: number) => {
+    if (!login) navigate('/login');
+    else toggleWishlist(setClient, wishlist, id);
+  };
 
   // const addToWishlistHandle = (target: HTMLButtonElement, id: number) => {
   //   target.classList.add('[&_svg]:animate-[ping_.5s]');
@@ -40,7 +54,7 @@ const ShowProducts: React.FC<ShowProductsProps> = ({
               </h2>
             )}
             <div className={`mb-12 mt-4 flex flex-col gap-6 sm:flex-row xl:gap-x-[5.35rem]`}>
-              <h3 className="font-heading-semibold text-3xl tracking-[0.04em] lg:text-36">
+              <h3 className="font-heading-semibold text-2xl tracking-[0.04em] lg:text-36">
                 {title.length > 1 ? title[1] : title[0]}
               </h3>
               {time && <TimeLeft />}
@@ -51,8 +65,8 @@ const ShowProducts: React.FC<ShowProductsProps> = ({
         {/* Products */}
         {items.length > 0 ? (
           /* Products Available */
-          <div className="mt-[37px] grid grid-cols-2 gap-x-2 gap-y-6 md:grid-cols-3 lg:grid-cols-4 lg:gap-8 2xl:grid-cols-5">
-            {items.map(({ id, name, rating, ratingCount, discount, price: realPrice }, index) => {
+          <div className="mt-[37px] grid grid-cols-1 gap-x-2 gap-y-6 min-[325px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-8 2xl:grid-cols-5">
+            {items.map(({ id, name, rating, ratingcount, discount, price: realPrice }, index) => {
               const price = realPrice - Math.round((discount / realPrice) * 100);
 
               return (
@@ -72,8 +86,8 @@ const ShowProducts: React.FC<ShowProductsProps> = ({
                       )}
                       {/* Wishlist */}
                       <button
-                        className="isolate ml-auto grid aspect-square w-9 place-content-center rounded-full bg-white"
-                        onClick={() => toggleWishlist(setClient, id)}
+                        className="isolate ml-auto grid size-9 place-content-center rounded-full bg-white"
+                        onClick={() => handleToggleWishlist(id)}
                       >
                         <Wishlist
                           className={`relative -z-10 ${wishlist.includes(id as never) ? '-z-10 fill-clr-ButtonRed text-clr-ButtonRed' : 'fill-none'}`}
@@ -85,7 +99,7 @@ const ShowProducts: React.FC<ShowProductsProps> = ({
                       <button
                         type="button"
                         className={`${openAddToCart ? '' : 'translate-y-full group-hover:translate-y-0'} absolute inset-0 top-auto bg-black py-3 font-medium text-xs text-white duration-200 hover:bg-clr-ButtonRed md:text-base`}
-                        onClick={() => addToCart(setClient, id)}
+                        onClick={() => handleAddToCart(id)}
                       >
                         Add To Cart
                       </button>
@@ -103,10 +117,10 @@ const ShowProducts: React.FC<ShowProductsProps> = ({
                           <span className="text-black line-through opacity-50">${realPrice}</span>
                         )}
                       </p>
-                      <div className="mt-4 flex gap-x-2">
+                      <div className="mt-4 flex items-center gap-x-2">
                         {/* Stars */}
-                        <Star count={rating} />
-                        <span className="font-semibold opacity-50">({ratingCount})</span>
+                        <Star count={Number(rating)} />
+                        <span className="font-semibold text-xs opacity-50">({ratingcount})</span>
                       </div>
                     </figcaption>
                   </Link>

@@ -17,7 +17,7 @@ const TimeLeft = () => {
   }, []);
 
   return (
-    <div className="flex items-center gap-x-3 font-medium text-xs">
+    <div className="flex flex-wrap items-center gap-x-3 font-medium text-xs">
       {Object.entries(timeLeft).map(([key, value]) => (
         <p className="grid gap-y-1.5" key={key}>
           {key}

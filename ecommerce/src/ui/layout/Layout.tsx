@@ -1,8 +1,7 @@
-// import Dev from '../../../dev/index.jsx';
 import { Outlet } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-// import { fetchProducts } from '@lib/fetchData';
-import { ContextClient, ContextUI } from '@lib/Context';
+import { fetchAuth, fetchProducts } from '@lib/fetch';
+import { ContextProducts, ContextClient, ContextUI } from '@lib/Context';
 import Header from './Header';
 import Footer from './Footer';
 import TopBanner from '@ui/components/TopBanner.js';
@@ -11,6 +10,9 @@ import { useLocation } from 'react-router-dom';
 
 const Layout: React.FC<{ rightHeader?: boolean }> = ({ rightHeader = true }) => {
   const [client, setClient] = useState<Client>({
+    login: false,
+    username: '',
+    email: '',
     cart: [],
     wishlist: [],
     lastItem: {
@@ -18,13 +20,20 @@ const Layout: React.FC<{ rightHeader?: boolean }> = ({ rightHeader = true }) => 
       what: '',
     },
   });
+  const [products, setProducts] = useState<Product[]>([]);
   const [ui, setUI] = useState<UI>({
+    openAccount: false,
     openCart: false,
+    openSearch: false,
   });
+  // const [loading, setLoading] = useState<boolean>(false);
 
-  // useEffect(() => {
-  //   fetchProducts(setClient);
-  // }, []);
+  useEffect(() => {
+    (async () => {
+      const ok = await fetchProducts(setProducts);
+      if (ok) fetchAuth(setClient);
+    })();
+  }, []);
 
   const { pathname } = useLocation();
 
@@ -34,15 +43,17 @@ const Layout: React.FC<{ rightHeader?: boolean }> = ({ rightHeader = true }) => 
 
   return (
     <ContextClient.Provider value={{ client, setClient }}>
-      <ContextUI.Provider value={{ ui, setUI }}>
-        <TopBanner />
-        <PopUpAddToCart />
-        <div className="flex min-h-screen flex-col">
-          <Header rightHeader={rightHeader} />
-          <Outlet />
-          <Footer />
-        </div>
-      </ContextUI.Provider>
+      <ContextProducts.Provider value={{ products, setProducts }}>
+        <ContextUI.Provider value={{ ui, setUI }}>
+          <TopBanner />
+          <PopUpAddToCart />
+          <div className="flex min-h-screen min-w-60 flex-col">
+            <Header rightHeader={rightHeader} />
+            <Outlet />
+            <Footer />
+          </div>
+        </ContextUI.Provider>
+      </ContextProducts.Provider>
     </ContextClient.Provider>
   );
 };
