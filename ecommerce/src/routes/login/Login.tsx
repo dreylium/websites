@@ -39,7 +39,6 @@ export default function Page() {
               <h1 className="mb-6 font-heading-medium text-24 lg:text-36">Login to Exlusive</h1>
               <p className="mb-2 text-sm lg:text-base">Enter your details below</p>
               <form
-                action="http://localhost:3000/api/login"
                 method="post"
                 className="grid gap-y-10 py-10"
                 onSubmit={handleLogin}
@@ -103,7 +102,7 @@ export default function Page() {
               <h1 className="mb-6 font-heading-medium text-24 lg:text-36">Create an account</h1>
               <p className="mb-2 text-sm lg:text-base">Enter your details below</p>
               <form
-                action="http://localhost:3000/api/signup"
+                action="/api/signup"
                 method="post"
                 className="grid gap-y-10 py-10"
                 onSubmit={handleSignup}

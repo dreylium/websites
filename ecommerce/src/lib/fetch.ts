@@ -1,5 +1,5 @@
 const fetchProducts = async (setProducts: ContextProductsD['setProducts']) => {
-  const result = await fetch('http://localhost:3000/api/products', {
+  const result = await fetch('/api/products', {
     method: 'get',
   });
   const { success, data } = await result.json();
@@ -10,7 +10,7 @@ const fetchProducts = async (setProducts: ContextProductsD['setProducts']) => {
 };
 
 const fetchAuth = async (setClient: ContextClientD['setClient']) => {
-  const response = await fetch('http://localhost:3000/api/auth', {
+  const response = await fetch('/api/auth', {
     method: 'POST',
     credentials: 'include', // Mengirim cookie
   });
@@ -38,7 +38,7 @@ const insertData = (setClient: ContextClientD['setClient'], data: Client) => {
 };
 
 const fetchLogin = async (email: string, password: string) => {
-  const response = await fetch('http://localhost:3000/api/login', {
+  const response = await fetch('/api/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ const fetchLogin = async (email: string, password: string) => {
   return 'Email or password is incorrect';
 };
 const fetchLogout = async () => {
-  const response = await fetch('http://localhost:3000/api/logout', {
+  const response = await fetch('/api/logout', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ const fetchLogout = async () => {
   else alert('logout failed');
 };
 const fetchSignup = async (username: string, email: string, password: string) => {
-  const response = await fetch('http://localhost:3000/api/signup', {
+  const response = await fetch('/api/signup', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ const fetchSignup = async (username: string, email: string, password: string) =>
 };
 
 const fetchCart = async (data: Client['cart']) => {
-  const result = await fetch('http://localhost:3000/api/cart', {
+  const result = await fetch('/api/cart', {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ const fetchCart = async (data: Client['cart']) => {
   return await result.json();
 };
 const fetchWishlist = async (data: Client['wishlist']) => {
-  const result = await fetch('http://localhost:3000/api/wishlist', {
+  const result = await fetch('/api/wishlist', {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
@@ -109,7 +109,7 @@ const fetchWishlist = async (data: Client['wishlist']) => {
   return await result.json();
 };
 const fetchSetProfile = async (username: string, email: string) => {
-  const result = await fetch('http://localhost:3000/api/setProfile', {
+  const result = await fetch('/api/setProfile', {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
@@ -120,7 +120,7 @@ const fetchSetProfile = async (username: string, email: string) => {
   return await result.json();
 };
 const fetchSetPassword = async (password: string, newPassword: string) => {
-  const result = await fetch('http://localhost:3000/api/setPassword', {
+  const result = await fetch('/api/setPassword', {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
@@ -131,7 +131,7 @@ const fetchSetPassword = async (password: string, newPassword: string) => {
   return await result.text();
 };
 const fetchRemoveAccount = async (password: string) => {
-  const result = await fetch('http://localhost:3000/api/removeAccount', {
+  const result = await fetch('/api/removeAccount', {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
