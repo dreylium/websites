@@ -2,7 +2,7 @@ export const websites = [
 	{
 		name: 'ecommerce',
 		visit: 'https://dreylium-ecommerce.vercel.app',
-		code: 'https://github.com/dreylium/websites/tree/main/ecommerce',
+		code: 'https://github.com/dreylium/ecommerce',
 		source: 'https://www.figma.com/',
 		app: 'React + Typescript + Tailwindcss'
 	},
